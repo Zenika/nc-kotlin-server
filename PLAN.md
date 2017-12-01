@@ -1,8 +1,11 @@
 # Plan
 
-## Sprint 0 - Présentation générale - 20m
+## Sprint 0 - Introduction - 20m
+ - Summary
+ - Introduction to Kotlin
+ - Application (show running on golang)
 
-### TP - Env dev, Hello world et Spring init
+### TP - Env dev, Hello world and Spring init
 
 ## Sprint 1 - Basics - 15m
  - packages, imports
@@ -10,7 +13,7 @@
  - functions
  - data classes
 
-### TP - First resource
+### TP - Languages list
 
 ## Sprint 2 - Object - 25m
  - properties and fields
@@ -26,3 +29,6 @@
  - function types
 
 ### TP ?
+
+## Going further
+ - alpine-kotlin repository
