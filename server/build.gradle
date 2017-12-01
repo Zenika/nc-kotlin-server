@@ -2,6 +2,7 @@ buildscript {
 	ext {
 		kotlinVersion = '1.1.61'
 		springBootVersion = '2.0.0.BUILD-SNAPSHOT'
+		jacksonVersion = '2.9.2'
 	}
 	repositories {
 		mavenCentral()
@@ -12,6 +13,7 @@ buildscript {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 		classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
 		classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
+		classpath("com.fasterxml.jackson.module:jackson-module-kotlin:${jacksonVersion}")
 	}
 }
 
