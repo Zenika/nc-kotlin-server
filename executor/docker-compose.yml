@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  executor:
+    build: .
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - codehero-temp:/tmp
+    privileged: true
+    stop_signal: SIGINT
+    environment:
+      TMPDIR: /tmp
+      TMPDIR_VOLUME: executor_codehero-temp
+
+volumes:
+  codehero-temp:

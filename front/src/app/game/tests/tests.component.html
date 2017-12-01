@@ -1,0 +1,16 @@
+<div class="devheroes-tests">
+  <h3>
+    <span>Tests</span>
+    <a class="sub" (click)="openTests()">Voir les tests</a>
+  </h3>
+  <div class="content">
+    <div
+      [class.passed]="results[index]?.ok"
+      [class.failed]="results[index]?.ok === false"
+      *ngFor="let test of tests; let index = index"
+    >
+      <span class="index">{{index + 1}}</span>
+      <span class="title">{{test.title}}</span>
+    </div>
+  </div>
+</div>

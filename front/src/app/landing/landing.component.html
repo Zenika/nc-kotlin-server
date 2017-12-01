@@ -1,0 +1,47 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="devheroes-landing">
+  <div class="content">
+    <h1>Le <i><b>code</b></i> dont<br />vous êtes le <i><b>super héros</b></i> 💪</h1>
+    <form #playerForm="ngForm" (ngSubmit)="onSubmit(playerForm)">
+      <div class="form-group">
+        <label for="pseudo">Pseudonyme</label>
+        <input
+          id="pseudo"
+          [(ngModel)]="model.name"
+          name="name"
+          #name="ngModel"
+          type="text"
+          placeholder="Votre pseudonyme"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          id="email"
+          [(ngModel)]="model.mail"
+          name="mail"
+          #email="ngModel"
+          type="email"
+          placeholder="Votre adresse email"
+          email
+          required
+        />
+      </div>
+      <div class="langage-selector" style="display: flex; justify-content: center; margin-bottom: 20px;">
+        <div [ngClass]="{'selected': model.language === 'js'}" class="logo-wrapper" style="margin-right: 50px;">
+          <img (click)="selectLanguage('js')" style="width: 50px; height: 50px;" src="assets/js.png" />
+        </div>
+        <div [ngClass]="{'selected': model.language === 'python'}" class="logo-wrapper" style="margin-right: 50px;">
+          <img (click)="selectLanguage('python')" style="width: 50px; height: 50px;" src="assets/python.png" />
+        </div>
+        <div [ngClass]="{'selected': model.language === 'php'}" class="logo-wrapper">
+          <img (click)="selectLanguage('php')" style="width: 50px; height: 50px;" src="assets/php.png" />
+        </div>
+      </div>
+      <div class="form-group">
+        <button type="submit" [disabled]="!playerForm.form.valid">C'est parti !</button>
+      </div>
+    </form>
+  </div>
+</div>

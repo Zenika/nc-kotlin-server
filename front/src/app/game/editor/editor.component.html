@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="editor">
+    <ace-editor [(text)]="text" [(mode)]="mode" theme="monokai" style="height: 100%; font-size: 14px;">
+    </ace-editor>
+    <div class="editor-footer" style="position: relative;">
+      <img *ngIf="codeService.isLoading" src="/assets/loading_apple.gif" style="max-height: 60%; position: absolute; left: 0; top: 20%; left: 10px;" />
+      <button id="launchTest" (click)="test()">Exécuter les tests</button>
+      <button id="validate" (click)="validate()" [disabled]="codeService.isLoading">Valider le code</button>
+    </div>
+  </div>
+</div>

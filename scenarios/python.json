@@ -1,0 +1,192 @@
+{
+  "language": "js",
+  "mapImg": "img/maps/js.png",
+  "avatarImg": "img/avatars/js.png",
+  "steps": [
+    {
+      "title": "Sort string",
+      "text": "Dans cette exercice votre objectif est de trier la chaine de caractères en entrée.",
+      "mapPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "template": "import sys\n\n# Sort\n\n# Inputs\nsequence = input() # A sequence of digits and letters\n\n# COMPLETE HERE\n# Calibrate your weapon by sorting in ascending order the sequence",
+      "tests": [
+        {
+          "title": "Only numbers",
+          "input": "3280745613569076413739204759302478293047767583020184758320",
+          "output": "0000000011122222233333333444444555556666777777777888889999"
+        },
+        {
+          "title": "Only chars",
+          "input": "heroessavetheworld",
+          "output": "adeeeehhloorrsstvw"
+        },
+        {
+          "title": "Numbers and chars",
+          "input": "h3ro3ss4veth3w0r1d",
+          "output": "013334dehhorrsstvw"
+        }
+      ],
+      "validations": [
+        {
+          "title": "Only numbers",
+          "input": "3953728910764532890754732817723456190986534617374841578",
+          "output": "0001111122223333333444444555555666677777777788888899999"
+        },
+        {
+          "title": "Only chars",
+          "input": "heroeswillwin",
+          "output": "eehiillnorsww"
+        },
+        {
+          "title": "Numbers and chars",
+          "input": "h3r03sw1llw1n",
+          "output": "01133hllnrsww"
+        }
+      ],
+      "results": {
+        "success": {
+          "finish": false,
+          "step": 1,
+          "score": 20
+        },
+        "partialSuccess": {
+          "finish": false,
+          "step": 1,
+          "score": 10,
+          "threshold": 1
+        },
+        "failure": {
+          "finish": false,
+          "step": 1,
+          "score": 0
+        }
+      }
+    },
+    {
+      "title": "Max of hexadecimal list",
+      "text": "Dans cet exercice, votre objectif est de récupérer la valeur maximale de cette séquence de nombres héxadecimaux.",
+      "mapPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "template": "import sys\n\n# Max\n\n# Inputs\nengineSequence = input() # A sequence of space separated hexadecimal numbers\n\n# COMPLETE HERE\n# The right speed for your engine is the greater number of the sequence",
+      "tests": [
+        {
+          "title": "Without letter",
+          "input": "12 65 387 263 4 677 23 6 67 212 3 450",
+          "output": "677"
+        },
+        {
+          "title": "With letter",
+          "input": "7 89 41B 12 2 4C5 77 89 E0 4A4 7 367 28 C29 9D",
+          "output": "C29"
+        }
+      ],
+      "validations": [
+        {
+          "title": "Without letter",
+          "input": "274 5 674 11 23 6 53 123 4",
+          "output": "674"
+        },
+        {
+          "title": "With letter",
+          "input": "A36 781 1 90B 76 5C 4 56 AA 2214 67 890 A0C 8 B 54 3B3",
+          "output": "A36"
+        }
+      ],
+      "results": {
+        "success": {
+          "finish": false,
+          "step": 2,
+          "score": 20
+        },
+        "partialSuccess": {
+          "finish": false,
+          "step": 2,
+          "score": 10,
+          "threshold": 1
+        },
+        "failure": {
+          "finish": false,
+          "step": 2,
+          "score": 0
+        }
+      }
+    },
+    {
+      "title": "Anagram",
+      "text": "Dans cet exercice votre objectif est de vérifier si deux chaines de charactères sont des anagrames. Exemple: marion/manoir. Écrire ok si les deux chaines sont des anagrammes et ko le cas échéant.",
+      "mapPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "template": "import sys\n\n# Anagram\n\n# Inputs\nsentence1 = input()\nsentence2 = input()\n\n# COMPLETE HERE\n# Print ok if sentence1 and sentence2 are anagrams\n# Print ko otherwise",
+      "tests": [
+        {
+          "title": "Hold the door",
+          "input": "odor\ndoor",
+          "output": "ok"
+        },
+        {
+          "title": "Hello world",
+          "input": "hello\ngoodbye",
+          "output": "ko"
+        },
+        {
+          "title": "Spacesheep",
+          "input": "statue of liberty\nbuilt to stay free",
+          "output": "ok"
+        }
+      ],
+      "validations": [
+        {
+          "title": "ok with space",
+          "input": "schoolmaster\nthe classroom",
+          "output": "ok"
+        },
+        {
+          "title": "ko",
+          "input": "azerty\nqsdfgh",
+          "output": "ko"
+        },
+        {
+          "title": "ok",
+          "input": "aunt\ntuna",
+          "output": "ok"
+        },
+        {
+          "title": "ko",
+          "input": "dog\ncog",
+          "output": "ko"
+        },
+        {
+          "title": "ok with space",
+          "input": "astronomer\nmoon starer",
+          "output": "ok"
+        },
+        {
+          "title": "ok with space",
+          "input": "eleven plus two\ntwelve plus one",
+          "output": "ok"
+        }
+      ],
+      "results": {
+        "success": {
+          "finish": true,
+          "score": 20
+        },
+        "partialSuccess": {
+          "finish": true,
+          "score": 10,
+          "threshold": 3
+        },
+        "failure": {
+          "finish": true,
+          "score": 0
+        }
+      }
+    }
+  ]
+}

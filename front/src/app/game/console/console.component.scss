@@ -1,0 +1,31 @@
+.devheroes-console {
+  height: 100%;
+}
+h3 {
+  height: 25px;
+}
+.content {
+  height: calc(100% - 35px);
+  overflow-y: auto;
+  background-color: #222;
+
+  pre {
+    padding-left: 10px;
+    padding-bottom: 10px;
+    margin: 0;
+
+    span {
+      &.separator {
+        color: #9575CD;
+      }
+
+      &.log {
+        color: #E3F2FD;
+      }
+
+      &.error {
+        color: #E57373;
+      }
+    }
+  }
+}

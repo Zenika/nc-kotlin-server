@@ -1,0 +1,9 @@
+{
+  "exec": "node --harmony build/index.js",
+  "watch": [
+    "build/"
+  ],
+  "env": {
+    "NODE_ENV": "development"
+  }
+}

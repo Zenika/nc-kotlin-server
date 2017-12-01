@@ -1,0 +1,20 @@
+<div class="modal">
+  <div class="row">
+    <div class="test" *ngFor="let test of tests; let index = index">
+      <div class="header"><span class="index">{{index + 1}}</span>{{test.title}}</div>
+      <div class="body">
+        <div class="left">
+          <span>Entrées :</span>
+          <pre>{{test.input}}</pre>
+        </div>
+        <div class="right">
+          <span>Sortie :</span>
+          <pre>{{test.output}}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <button (click)="closeDialog()">Fermer</button>
+  </div>
+</div>

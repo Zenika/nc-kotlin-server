@@ -1,0 +1,49 @@
+{
+  "languages": [{
+    "key": "js",
+    "extension": ".js",
+    "imageName": "node",
+    "imageTag": "8.2-alpine",
+    "runCmd": "/bin/ash",
+    "execCmd": ["timeout", "-t", "2", "node", "--harmony"]
+  }, {
+    "key": "go",
+    "extension": ".go",
+    "imageName": "golang",
+    "imageTag": "1.8-alpine",
+    "runCmd": "/bin/ash",
+    "execCmd": ["timeout", "-t", "2", "go", "run"],
+    "tempDir": "/tmp/codehero",
+    "volumes": ["/tmp"]
+  }, {
+    "key": "kt",
+    "extension": ".kts",
+    "imageName": "zenika/alpine-kotlin",
+    "imageTag": "1.1",
+    "runCmd": "/bin/ash",
+    "execCmd": ["timeout", "-t", "5", "kotlinc", "-script"],
+    "tempDir": "/tmp/codehero",
+    "volumes": ["/tmp"]
+  }, {
+    "key": "php",
+    "extension": ".php",
+    "imageName": "php",
+    "imageTag": "7.1-alpine",
+    "runCmd": "/bin/ash",
+    "execCmd": ["timeout", "-t", "2", "php"]
+  }, {
+    "key": "python",
+    "extension": ".py",
+    "imageName": "python",
+    "imageTag": "3.6-alpine3.6",
+    "runCmd": "/bin/ash",
+    "execCmd": ["timeout", "-t", "2", "python"]
+  }, {
+    "key": "ruby",
+    "extension": ".rb",
+    "imageName": "ruby",
+    "imageTag": "2.4-alpine",
+    "runCmd": "/bin/ash",
+    "execCmd": ["timeout", "-t", "2", "ruby"]
+  }]
+}

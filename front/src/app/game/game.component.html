@@ -1,0 +1,18 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="devheroes-main">
+  <div class="devheroes-header">
+    <span class="title">{{(state|async)?.title}}</span>
+    <span>{{counter()}}</span>
+    <div class="right">
+      <span class="player">{{player ? player.name : ''}}</span>
+      <span class="score">{{(state|async)?.score || 0}} pts</span>
+    </div>
+  </div>
+  <!-- <devheroes-scene class="devheroes-scene"></devheroes-scene> -->
+  <div class="devheroes-sidebar">
+    <devheroes-scenario class="devheroes-scenario" [scenario]="(state|async)?.text"></devheroes-scenario>
+    <devheroes-tests class="devheroes-tests" [tests]="tests" [results]="results"></devheroes-tests>
+    <devheroes-console class="devheroes-console" [output]="formattedOutput"></devheroes-console>
+  </div>
+  <devheroes-editor class="devheroes-editor" [text]="(state|async)?.template"></devheroes-editor>
+</div>

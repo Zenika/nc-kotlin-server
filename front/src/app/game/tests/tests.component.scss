@@ -1,0 +1,50 @@
+.devheroes-tests {
+  height: 100%;
+}
+
+h3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  .sub {
+    font-size: 18px;
+    text-decoration: underline;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.content {
+  height: calc(100% - 35px);
+  overflow-y: auto;
+  background-color: transparent;
+
+  > div {
+    border-left: 10px solid #888;
+    border: 1px solid #888;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    .index {
+      margin-right: 10px;
+      background-color: #888;
+      padding: 10px 15px;
+    }
+    &.passed {
+      border-color: #4CAF50;
+      .index {
+        background-color: #4CAF50;
+      }
+    }
+    &.failed {
+      border-color: #F44336;
+      .index {
+        background-color: #F44336;
+      }
+    }
+  }
+}

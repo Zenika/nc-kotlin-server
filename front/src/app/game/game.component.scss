@@ -1,0 +1,68 @@
+.devheroes-main {
+  display: grid;
+  grid-template-columns: 33% 1fr;
+  grid-template-rows: 50px 1fr;
+  width: 100vw;
+  height: 100vh;
+  background-color: #fafafa;
+  overflow: hidden;
+}
+
+.devheroes-header {
+  grid-column: span 2;
+  background-color: #b21e3e;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 28px;
+  font-weight: 300;
+  .right {
+    display: flex;
+    justify-content: space-between;
+    .player {
+      font-size: 20px;
+      margin-right: 1em;
+    }
+
+    .score {
+      font-size: 20px;
+    }
+  }
+}
+
+.devheroes-sidebar {
+  height: calc(100vh - 50px);
+  max-height: calc(100vh - 50px);
+  background-color: #333;
+  overflow: hidden;
+  border-right: 1px solid #888;
+
+  > * {
+    display: block;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 20px 20px;
+  }
+
+  .devheroes-scenario {
+    height: 40%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    text-align: justify;
+    line-height: 1.5em;
+  }
+
+  .devheroes-console {
+    height: 30%;
+  }
+
+  .devheroes-tests {
+    height: 30%;
+    background-color: #555;
+    border-top: 1px solid #888;
+    border-bottom: 1px solid #888;
+  }
+}
