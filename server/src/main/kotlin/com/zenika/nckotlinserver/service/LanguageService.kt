@@ -1,5 +1,6 @@
 package com.zenika.nckotlinserver.service
 
+import com.zenika.nckotlinserver.model.Language
 import com.zenika.nckotlinserver.repository.ScenarioRepository
 import com.zenika.nckotlinserver.service.executor.Executor
 import org.springframework.beans.factory.annotation.Autowired
@@ -13,6 +14,10 @@ class LanguageService {
 
     @Autowired
     lateinit var scenarioRepository: ScenarioRepository
-    
-    fun list() = emptyList<Any>()
+
+    fun list() = executor.getLanguages()
+            .map { scenarioRepository.findById(it) }
+            .filter { it.isPresent }
+            .map { it.get() }
+            .map { Language(it.language, it.avatarImg) }
 }
