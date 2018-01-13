@@ -10,16 +10,16 @@ import java.util.*
 @Repository
 abstract class RedisValueRepository<V : Entity>(
         val prefix: String,
-        template: RedisTemplate<String, V?>
+        template: RedisTemplate<String, V>
 ) : CrudRepository<V, String> {
 
-    val opsForValue: ValueOperations<String, V?> = template.opsForValue()
+    val opsForValue: ValueOperations<String, V> = template.opsForValue()
 
     fun keyForId(id: String?) = "$prefix:$id"
 
     override fun findById(id: String?): Optional<V> = Optional.ofNullable(opsForValue.get(keyForId(id)))
 
-    override fun existsById(id: String?): Boolean = opsForValue.operations.hasKey(keyForId(id))
+    override fun existsById(id: String?): Boolean = opsForValue.operations.hasKey(keyForId(id)) == true
 
     override fun findAllById(ids: MutableIterable<String>?): MutableIterable<V> = TODO("not implemented")
     override fun findAll(): MutableIterable<V> = TODO("not implemented")

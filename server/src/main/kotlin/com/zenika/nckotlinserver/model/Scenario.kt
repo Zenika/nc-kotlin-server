@@ -4,9 +4,10 @@ package com.zenika.nckotlinserver.model
  * Holds all the information of a scenario
  */
 data class Scenario(
+        override val id: String,
         val language: String,
         val avatarImg: String?
-)
+): Entity
 
 /**
  * Holds the information of one step of a scenario

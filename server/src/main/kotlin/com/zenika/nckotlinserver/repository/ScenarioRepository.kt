@@ -7,5 +7,5 @@ import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.stereotype.Repository
 
 @Repository
-class ScenarioRepository(@Autowired val scenarioTemplate: RedisTemplate<String, Scenario?>)
+class ScenarioRepository(@Autowired val scenarioTemplate: RedisTemplate<String, Scenario>)
     : RedisValueRepository<Scenario>("scenario", scenarioTemplate)
