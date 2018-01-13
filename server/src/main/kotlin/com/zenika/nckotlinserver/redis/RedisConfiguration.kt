@@ -4,6 +4,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.zenika.nckotlinserver.model.Entity
 import com.zenika.nckotlinserver.model.Player
+import com.zenika.nckotlinserver.model.PlayerResult
 import com.zenika.nckotlinserver.model.Scenario
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -34,9 +35,13 @@ class RedisConfiguration {
     fun playerRedisTemplate(@Autowired connectionFactory: JedisConnectionFactory)
             : RedisTemplate<String, Player> = redisTemplate(connectionFactory)
 
+    @Bean
+    fun playerResultRedisTemplate(@Autowired connectionFactory: JedisConnectionFactory)
+            : RedisTemplate<String, PlayerResult> = redisTemplate(connectionFactory)
+
 }
 
-inline fun <reified E : Entity> redisTemplate(connectionFactory: JedisConnectionFactory): RedisTemplate<String, E> {
+inline fun <reified E> redisTemplate(connectionFactory: JedisConnectionFactory): RedisTemplate<String, E> {
     val template = RedisTemplate<String, E>()
     template.connectionFactory = connectionFactory
     template.keySerializer = StringRedisSerializer()

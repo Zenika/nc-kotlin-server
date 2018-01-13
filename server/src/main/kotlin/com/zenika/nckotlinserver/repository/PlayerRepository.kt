@@ -9,3 +9,4 @@ import org.springframework.stereotype.Repository
 @Repository
 class PlayerRepository(@Autowired val playerTemplate: RedisTemplate<String, Player>)
     : RedisValueRepository<Player>("player", playerTemplate)
+
