@@ -6,12 +6,12 @@ import java.time.LocalTime
  * Holds information about a player session
  */
 data class Player(
-        val id: String,
+        override val id: String,
         val name: String,
         val mail: String,
         val language: String,
         val startTime: LocalTime
-)
+): Entity
 
 /**
  * Represents the result of a player

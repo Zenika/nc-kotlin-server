@@ -1,27 +1,29 @@
 package com.zenika.nckotlinserver.repository
 
-import com.zenika.nckotlinserver.model.Scenario
+import com.zenika.nckotlinserver.model.Player
 import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.junit4.SpringRunner
+import java.time.LocalTime
 import java.util.*
+
 
 @RunWith(SpringRunner::class)
 @SpringBootTest
-class ScenarioRepositoryTest {
+class PlayerRepositoryTest {
 
     @Autowired
-    lateinit var scenarioRepository: ScenarioRepository
+    lateinit var playerRepository: PlayerRepository
 
     @Test
-    fun save_scenario() {
+    fun save_player() {
         val id = Random().nextInt(10000).toString()
-        val scenario = Scenario(id, "kotlin", "")
-        scenarioRepository.save(scenario)
-        val optionalScenario = scenarioRepository.findById(id)
-        assertEquals("kotlin", optionalScenario.get().language)
+        val player = Player(id, "John Doe", "john.doe@zenika.com", "kotlin", LocalTime.now())
+        playerRepository.save(player)
+        val optionalScenario = playerRepository.findById(id)
+        assertEquals("John Doe", optionalScenario.get().name)
     }
 }
