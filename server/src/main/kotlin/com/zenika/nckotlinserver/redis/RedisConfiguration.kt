@@ -1,7 +1,6 @@
 package com.zenika.nckotlinserver.redis
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.zenika.nckotlinserver.model.Scenario
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
@@ -26,11 +25,11 @@ class RedisConfiguration {
     @Bean
     fun redisTemplate(
             @Autowired connectionFactory: JedisConnectionFactory
-    ): RedisTemplate<String, Scenario?> {
-        val template = RedisTemplate<String, Scenario?>()
+    ): RedisTemplate<String, String> {
+        val template = RedisTemplate<String, String>()
         template.connectionFactory = connectionFactory
         template.keySerializer = StringRedisSerializer()
-        val valueSerializer = Jackson2JsonRedisSerializer(Scenario::class.java)
+        val valueSerializer = Jackson2JsonRedisSerializer(Any::class.java)
         valueSerializer.setObjectMapper(jacksonObjectMapper())
         template.valueSerializer = valueSerializer
         return template
