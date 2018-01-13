@@ -23,7 +23,6 @@ class PlayerRepositoryTest {
         val id = Random().nextInt(10000).toString()
         val player = Player(id, "John Doe", "john.doe@zenika.com", "kotlin", LocalTime.now())
         playerRepository.save(player)
-        val optionalScenario = playerRepository.findById(id)
-        assertEquals("John Doe", optionalScenario.get().name)
+        assertEquals("John Doe", playerRepository.findById(id).get().name)
     }
 }
