@@ -7,7 +7,7 @@ import javax.ws.rs.*
 import javax.ws.rs.core.MediaType.APPLICATION_JSON
 
 
-@Path("scenario")
+@Path("scenario/{language}")
 @Consumes(APPLICATION_JSON)
 @Produces(APPLICATION_JSON)
 class ScenarioResource {
@@ -16,11 +16,13 @@ class ScenarioResource {
     lateinit var repository: ScenarioRepository
 
     @PUT
-    @Path("{language}")
     fun put(@PathParam("language") language: String, scenario: Scenario) {
         if (scenario.language != language) {
             throw BadRequestException()
         }
         repository.save(scenario)
     }
+
+    @GET
+    fun get(@PathParam("language") language: String) = repository.findById(language)
 }

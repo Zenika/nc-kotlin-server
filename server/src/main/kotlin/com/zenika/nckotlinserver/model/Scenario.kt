@@ -22,16 +22,11 @@ data class Scenario(
 data class Step(
         val title: String,
         val text: String,
-        val mapPosition: MapPosition,
+        val mapPosition: Coord,
         val template: String,
         val tests: Array<Test>,
         val validations: Array<Test>,
         val results: Results
-)
-
-data class MapPosition(
-        val x: Int,
-        val y: Int
 )
 
 @JsonInclude(NON_NULL)
