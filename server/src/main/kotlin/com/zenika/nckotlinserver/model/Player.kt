@@ -12,7 +12,7 @@ data class Player(
         val language: String,
         val startTime: LocalTime
 ) : Entity {
-    override fun id(): String = playerId
+    override fun id() = playerId
 }
 
 /**

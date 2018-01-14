@@ -13,7 +13,7 @@ data class Scenario(
         val avatarImg: String,
         val steps: Array<Step>
 ) : Entity {
-    override fun id(): String = language
+    override fun id() = language
 }
 
 /**

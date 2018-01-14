@@ -24,5 +24,5 @@ data class InternalState(
         val step: Int,
         val score: Int
 ) : Entity {
-    override fun id(): String = playerId
+    override fun id() = playerId
 }
