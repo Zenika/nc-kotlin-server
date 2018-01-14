@@ -11,7 +11,7 @@ data class State(
         val text: String,
         val mapPosition: Coord,
         val template: String,
-        val tests: Array<Test>,
+        val tests: List<Test>,
         val score: Int
 )
 
@@ -19,7 +19,7 @@ data class State(
  * Holds private information about the state of a player
  */
 data class InternalState(
-        val playerId: String,
+        private val playerId: String,
         val finished: Boolean = false,
         val step: Int,
         val score: Int

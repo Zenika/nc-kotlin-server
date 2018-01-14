@@ -24,8 +24,8 @@ data class Step(
         val text: String,
         val mapPosition: Coord,
         val template: String,
-        val tests: Array<Test>,
-        val validations: Array<Test>,
+        val tests: List<Test>,
+        val validations: List<Test>,
         val results: Results
 )
 
