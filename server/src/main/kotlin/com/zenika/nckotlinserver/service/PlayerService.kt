@@ -114,7 +114,7 @@ class PlayerService {
             resultRepository.add(PlayerResult(
                     player,
                     newState.score,
-                    Duration.between(player.startTime, now()).toString()
+                    Duration.between(player.startTime, now())
             ))
         }
 

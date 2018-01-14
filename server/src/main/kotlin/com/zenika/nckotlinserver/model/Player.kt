@@ -1,5 +1,6 @@
 package com.zenika.nckotlinserver.model
 
+import java.time.Duration
 import java.time.LocalDateTime
 import java.time.LocalDateTime.now
 import java.util.UUID.randomUUID
@@ -31,5 +32,5 @@ data class PlayerCreation(
 data class PlayerResult(
         val player: Player,
         val score: Int,
-        val time: String
+        val time: Duration
 )
