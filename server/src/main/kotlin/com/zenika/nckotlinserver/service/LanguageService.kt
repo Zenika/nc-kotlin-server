@@ -16,8 +16,6 @@ class LanguageService {
     lateinit var scenarioRepository: ScenarioRepository
 
     fun list() = executor.getLanguages()
-            .map { scenarioRepository.findById(it) }
-            .filter { it.isPresent }
-            .map { it.get() }
+            .map { scenarioRepository.get(it) }
             .map { Language(it.language, it.avatarImg) }
 }

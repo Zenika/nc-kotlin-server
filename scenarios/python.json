@@ -1,7 +1,7 @@
 {
-  "language": "js",
-  "mapImg": "img/maps/js.png",
-  "avatarImg": "img/avatars/js.png",
+  "language": "python",
+  "mapImg": "img/maps/python.png",
+  "avatarImg": "img/avatars/python.png",
   "steps": [
     {
       "title": "Sort string",

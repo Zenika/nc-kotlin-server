@@ -1,7 +1,8 @@
 package com.zenika.nckotlinserver.redis
 
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.zenika.nckotlinserver.model.Scenario
+import com.zenika.nckotlinserver.model.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
@@ -24,15 +25,29 @@ class RedisConfiguration {
     ) = JedisConnectionFactory(RedisStandaloneConfiguration(hostName, port))
 
     @Bean
-    fun redisTemplate(
-            @Autowired connectionFactory: JedisConnectionFactory
-    ): RedisTemplate<String, Scenario?> {
-        val template = RedisTemplate<String, Scenario?>()
-        template.connectionFactory = connectionFactory
-        template.keySerializer = StringRedisSerializer()
-        val valueSerializer = Jackson2JsonRedisSerializer(Scenario::class.java)
-        valueSerializer.setObjectMapper(jacksonObjectMapper())
-        template.valueSerializer = valueSerializer
-        return template
-    }
+    fun scenarioRedisTemplate(@Autowired connectionFactory: JedisConnectionFactory)
+            : RedisTemplate<String, Scenario> = redisTemplate(connectionFactory)
+
+    @Bean
+    fun playerRedisTemplate(@Autowired connectionFactory: JedisConnectionFactory)
+            : RedisTemplate<String, Player> = redisTemplate(connectionFactory)
+
+    @Bean
+    fun playerResultRedisTemplate(@Autowired connectionFactory: JedisConnectionFactory)
+            : RedisTemplate<String, PlayerResult> = redisTemplate(connectionFactory)
+
+    @Bean
+    fun internalStateRedisTemplate(@Autowired connectionFactory: JedisConnectionFactory)
+            : RedisTemplate<String, InternalState> = redisTemplate(connectionFactory)
+
+}
+
+inline fun <reified E> redisTemplate(connectionFactory: JedisConnectionFactory): RedisTemplate<String, E> {
+    val template = RedisTemplate<String, E>()
+    template.connectionFactory = connectionFactory
+    template.keySerializer = StringRedisSerializer()
+    val valueSerializer = Jackson2JsonRedisSerializer(E::class.java)
+    valueSerializer.setObjectMapper(jacksonObjectMapper().registerModule(JavaTimeModule()))
+    template.valueSerializer = valueSerializer
+    return template
 }

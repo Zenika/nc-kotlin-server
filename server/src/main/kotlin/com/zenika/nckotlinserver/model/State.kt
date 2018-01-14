@@ -9,9 +9,9 @@ data class State(
         val finished: Boolean,
         val title: String,
         val text: String,
-        val mapPosition: MapPosition,
+        val mapPosition: Coord,
         val template: String,
-        val tests: Array<Test>,
+        val tests: List<Test>,
         val score: Int
 )
 
@@ -19,7 +19,10 @@ data class State(
  * Holds private information about the state of a player
  */
 data class InternalState(
-        val finished: Boolean,
+        private val playerId: String,
+        val finished: Boolean = false,
         val step: Int,
         val score: Int
-)
+) : Entity {
+    override fun id() = playerId
+}
