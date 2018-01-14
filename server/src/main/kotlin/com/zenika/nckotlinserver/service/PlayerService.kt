@@ -32,6 +32,9 @@ class PlayerService {
     lateinit var mailRepository: MailRepository
 
     @Autowired
+    lateinit var languageService: LanguageService
+
+    @Autowired
     lateinit var executor: Executor
 
     fun createPlayer(playerCreation: PlayerCreation): Player {
@@ -39,7 +42,7 @@ class PlayerService {
         if (playerCreation.mail.isBlank()) throw BadRequestException("Empty player mail")
         if (playerCreation.language.isBlank()) throw BadRequestException("Empty player language")
 
-        // TODO add language exists verification ?
+        if (!languageService.isAvailable(playerCreation.language)) throw BadRequestException("Language ${playerCreation.language} is not available")
 
         if (mailRepository.exists(playerCreation.mail)) throw ForbiddenException("A game has already been played with this mail")
         mailRepository.add(playerCreation.mail)
