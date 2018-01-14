@@ -1,5 +1,6 @@
 package com.zenika.nckotlinserver.resources
 
+import com.zenika.nckotlinserver.model.InternalState
 import com.zenika.nckotlinserver.model.Scenario
 import com.zenika.nckotlinserver.repository.ScenarioRepository
 import org.springframework.beans.factory.annotation.Autowired

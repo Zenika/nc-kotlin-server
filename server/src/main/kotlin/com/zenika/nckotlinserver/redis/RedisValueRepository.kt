@@ -9,28 +9,33 @@ import java.util.*
 
 @Repository
 abstract class RedisValueRepository<V : Entity>(
-        val prefix: String,
+        val keyForId: (String?) -> String,
         template: RedisTemplate<String, V>
 ) : CrudRepository<V, String> {
 
-    val opsForValue: ValueOperations<String, V> = template.opsForValue()
+    constructor(
+            prefix: String,
+            template: RedisTemplate<String, V>
+    ) : this(
+            { "$prefix:$it" },
+            template
+    )
 
-    fun keyForId(id: String?) = "$prefix:$id"
+    val opsForValue: ValueOperations<String, V> = template.opsForValue()
 
     override fun findById(id: String?): Optional<V> = Optional.ofNullable(opsForValue.get(keyForId(id)))
 
     override fun existsById(id: String?): Boolean = opsForValue.operations.hasKey(keyForId(id)) == true
-
-    override fun findAllById(ids: MutableIterable<String>?): MutableIterable<V> = TODO("not implemented")
-    override fun findAll(): MutableIterable<V> = TODO("not implemented")
-    override fun deleteAll(entities: MutableIterable<V>?) = TODO("not implemented")
-    override fun deleteAll() = TODO("not implemented")
 
     override fun <S : V?> save(entity: S): S {
         opsForValue.set(keyForId(entity?.id()), entity)
         return entity
     }
 
+    override fun findAllById(ids: MutableIterable<String>?): MutableIterable<V> = TODO("not implemented")
+    override fun findAll(): MutableIterable<V> = TODO("not implemented")
+    override fun deleteAll(entities: MutableIterable<V>?) = TODO("not implemented")
+    override fun deleteAll() = TODO("not implemented")
     override fun <S : V?> saveAll(entities: MutableIterable<S>?): MutableIterable<S> = TODO("not implemented")
     override fun count(): Long = TODO("not implemented")
     override fun delete(entity: V?) = TODO("not implemented")

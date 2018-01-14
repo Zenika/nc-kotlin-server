@@ -20,7 +20,7 @@ data class State(
  */
 data class InternalState(
         val playerId: String,
-        val finished: Boolean,
+        val finished: Boolean = false,
         val step: Int,
         val score: Int
 ) : Entity {
