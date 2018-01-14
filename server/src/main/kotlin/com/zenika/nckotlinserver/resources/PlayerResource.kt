@@ -1,6 +1,5 @@
 package com.zenika.nckotlinserver.resources
 
-import com.zenika.nckotlinserver.model.Player
 import com.zenika.nckotlinserver.model.PlayerCreation
 import com.zenika.nckotlinserver.service.PlayerService
 import org.springframework.beans.factory.annotation.Autowired

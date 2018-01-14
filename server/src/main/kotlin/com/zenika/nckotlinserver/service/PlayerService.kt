@@ -8,6 +8,7 @@ import com.zenika.nckotlinserver.repository.PlayerRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import javax.ws.rs.BadRequestException
+import javax.ws.rs.NotFoundException
 
 @Service
 class PlayerService {
@@ -19,7 +20,6 @@ class PlayerService {
     lateinit var internalStateRepository: InternalStateRepository
 
     fun createPlayer(playerCreation: PlayerCreation): Player {
-
         if (playerCreation.name.isBlank()) throw BadRequestException("Empty player name")
         if (playerCreation.mail.isBlank()) throw BadRequestException("Empty player mail")
         if (playerCreation.language.isBlank()) throw BadRequestException("Empty player language")
@@ -36,4 +36,5 @@ class PlayerService {
     }
 
     fun getPlayer(playerId: String) = playerRepository.findById(playerId)
+            .orElseThrow { NotFoundException("Unknown player $playerId") }
 }
