@@ -2,10 +2,7 @@ package com.zenika.nckotlinserver.redis
 
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.zenika.nckotlinserver.model.InternalState
-import com.zenika.nckotlinserver.model.Player
-import com.zenika.nckotlinserver.model.PlayerResult
-import com.zenika.nckotlinserver.model.Scenario
+import com.zenika.nckotlinserver.model.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
@@ -42,7 +39,6 @@ class RedisConfiguration {
     @Bean
     fun internalStateRedisTemplate(@Autowired connectionFactory: JedisConnectionFactory)
             : RedisTemplate<String, InternalState> = redisTemplate(connectionFactory)
-
 
 }
 

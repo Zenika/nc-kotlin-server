@@ -16,9 +16,9 @@ class ScenarioResource {
     lateinit var repository: ScenarioRepository
 
     @POST
-    fun put(scenario: Scenario) = repository.save(scenario)
+    fun put(scenario: Scenario) = repository.set(scenario)
 
     @GET
     @Path("{language}")
-    fun get(@PathParam("language") language: String) = repository.findById(language)
+    fun get(@PathParam("language") language: String) = repository.get(language)
 }

@@ -22,7 +22,7 @@ class PlayerRepositoryTest {
     fun save_player() {
         val id = Random().nextInt(10000).toString()
         val player = Player(id, "John Doe", "john.doe@zenika.com", "kotlin", LocalTime.now())
-        playerRepository.save(player)
-        assertEquals("John Doe", playerRepository.findById(id).get().name)
+        playerRepository.set(player)
+        assertEquals(player, playerRepository.get(id))
     }
 }

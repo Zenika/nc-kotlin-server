@@ -19,8 +19,8 @@ class ScenarioRepositoryTest {
     @Test
     fun save_scenario() {
         val id = Random().nextInt(10000).toString()
-        val scenario = Scenario(id, "kotlin", "")
-        scenarioRepository.save(scenario)
-        assertEquals("kotlin", scenarioRepository.findById(id).get().language)
+        val scenario = Scenario(id, "kotlin", "", emptyList())
+        scenarioRepository.set(scenario)
+        assertEquals(scenario, scenarioRepository.get(id))
     }
 }
