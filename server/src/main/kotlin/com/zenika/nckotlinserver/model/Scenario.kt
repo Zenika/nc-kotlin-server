@@ -11,7 +11,7 @@ data class Scenario(
         val language: String,
         val mapImg: String,
         val avatarImg: String,
-        val steps: Array<Step>
+        val steps: List<Step>
 ) : Entity {
     override fun id() = language
 }
