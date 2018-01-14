@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import javax.ws.rs.client.Client
 import javax.ws.rs.client.ClientBuilder
+import javax.ws.rs.client.Entity.entity
 import javax.ws.rs.client.WebTarget
 import javax.ws.rs.core.GenericType
+import javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE
 
 @Service
 class Executor(@Value("\${executor.url:http://localhost:3000}") val url: String) {
@@ -16,8 +18,12 @@ class Executor(@Value("\${executor.url:http://localhost:3000}") val url: String)
     fun getLanguages() = getExecutorTarget("language")
             .request()
             .get()
-            .readEntity(object : GenericType<List<ExecutorLanguage>>() {})
+            .readEntity(object : GenericType<List<Language>>() {})
             .map { it.key }
+
+    fun execute(language: String, _in: In) = getExecutorTarget("language/$language")
+            .request()
+            .post(entity(_in, APPLICATION_JSON_TYPE), Out::class.java)
 
     private fun getExecutorTarget(path: String): WebTarget {
         var target = getClient().target(url)
@@ -34,4 +40,15 @@ class Executor(@Value("\${executor.url:http://localhost:3000}") val url: String)
 }
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-data class ExecutorLanguage(val key: String)
+data class Language(val key: String)
+
+data class In(
+        val code: String,
+        val input: String
+)
+
+data class Out(
+        val exitCode: Int,
+        val out: String,
+        val err: String
+)
