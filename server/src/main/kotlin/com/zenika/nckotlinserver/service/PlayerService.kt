@@ -1,10 +1,7 @@
 package com.zenika.nckotlinserver.service
 
 import com.zenika.nckotlinserver.model.*
-import com.zenika.nckotlinserver.repository.InternalStateRepository
-import com.zenika.nckotlinserver.repository.PlayerRepository
-import com.zenika.nckotlinserver.repository.PlayerResultRepository
-import com.zenika.nckotlinserver.repository.ScenarioRepository
+import com.zenika.nckotlinserver.repository.*
 import com.zenika.nckotlinserver.service.executor.Executor
 import com.zenika.nckotlinserver.service.executor.In
 import org.springframework.beans.factory.annotation.Autowired
@@ -32,6 +29,9 @@ class PlayerService {
     lateinit var resultRepository: PlayerResultRepository
 
     @Autowired
+    lateinit var mailRepository: MailRepository
+
+    @Autowired
     lateinit var executor: Executor
 
     fun createPlayer(playerCreation: PlayerCreation): Player {
@@ -39,9 +39,10 @@ class PlayerService {
         if (playerCreation.mail.isBlank()) throw BadRequestException("Empty player mail")
         if (playerCreation.language.isBlank()) throw BadRequestException("Empty player language")
 
-        // TODO put back mail already played verification ?
-
         // TODO add language exists verification ?
+
+        if (mailRepository.exists(playerCreation.mail)) throw ForbiddenException("A game has already been played with this mail")
+        mailRepository.add(playerCreation.mail)
 
         val player = playerRepository.save(Player(playerCreation.name, playerCreation.mail, playerCreation.language))
 

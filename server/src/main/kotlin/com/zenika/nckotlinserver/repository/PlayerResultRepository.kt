@@ -6,8 +6,8 @@ import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.stereotype.Repository
 
 @Repository
-class PlayerResultRepository(@Autowired val playerResultTemplate: RedisTemplate<String, PlayerResult>) {
-    val opsForList = playerResultTemplate.opsForList()
+class PlayerResultRepository(@Autowired val template: RedisTemplate<String, PlayerResult>) {
+    val opsForList = template.opsForList()
 
     fun add(playerResult: PlayerResult) {
         opsForList.rightPush("playerResult", playerResult)
