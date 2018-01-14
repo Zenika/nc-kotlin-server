@@ -6,5 +6,5 @@ package com.zenika.nckotlinserver.model
 data class ValidateResult(
     val rate:  Double,
     val score: Int,
-    val text: String
+    val text: String?
 )

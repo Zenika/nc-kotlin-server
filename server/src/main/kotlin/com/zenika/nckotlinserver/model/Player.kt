@@ -1,7 +1,7 @@
 package com.zenika.nckotlinserver.model
 
-import java.time.LocalTime
-import java.time.LocalTime.now
+import java.time.LocalDateTime
+import java.time.LocalDateTime.now
 import java.util.UUID.randomUUID
 
 /**
@@ -12,7 +12,7 @@ data class Player(
         val name: String,
         val mail: String,
         val language: String,
-        val startTime: LocalTime
+        val startTime: LocalDateTime
 ) : Entity {
     constructor(name: String, mail: String, language: String) : this(randomUUID().toString(), name, mail, language, now())
 

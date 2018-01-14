@@ -1,5 +1,6 @@
 package com.zenika.nckotlinserver.resources
 
+import com.zenika.nckotlinserver.model.Code
 import com.zenika.nckotlinserver.model.PlayerCreation
 import com.zenika.nckotlinserver.service.PlayerService
 import org.springframework.beans.factory.annotation.Autowired
@@ -17,7 +18,19 @@ class PlayerResource {
     @POST
     fun post(playerCreation: PlayerCreation) = service.createPlayer(playerCreation)
 
-    @Path("{playerId}")
     @GET
+    @Path("{playerId}")
     fun get(@PathParam("playerId") playerId: String) = service.getPlayer(playerId)
+
+    @GET
+    @Path("{playerId}/state")
+    fun getState(@PathParam("playerId") playerId: String) = service.getState(playerId)
+
+    @POST
+    @Path("{playerId}/test")
+    fun test(@PathParam("playerId") playerId: String, code: Code) = service.test(playerId, code)
+
+    @POST
+    @Path("{playerId}/validate")
+    fun validate(@PathParam("playerId") playerId: String, code: Code) = service.validate(playerId, code)
 }
