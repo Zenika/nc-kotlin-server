@@ -27,7 +27,7 @@ abstract class RedisValueRepository<V : Entity>(
     override fun deleteAll() = TODO("not implemented")
 
     override fun <S : V?> save(entity: S): S {
-        opsForValue.set(keyForId(entity?.id), entity)
+        opsForValue.set(keyForId(entity?.id()), entity)
         return entity
     }
 
