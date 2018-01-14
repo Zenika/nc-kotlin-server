@@ -10,8 +10,6 @@ import java.time.Duration
 import java.time.LocalDateTime.now
 import javax.ws.rs.BadRequestException
 import javax.ws.rs.ForbiddenException
-import javax.ws.rs.InternalServerErrorException
-import javax.ws.rs.NotFoundException
 
 @Service
 class PlayerService {
@@ -47,15 +45,15 @@ class PlayerService {
         if (mailRepository.exists(playerCreation.mail)) throw ForbiddenException("A game has already been played with this mail")
         mailRepository.add(playerCreation.mail)
 
-        val player = playerRepository.save(Player(playerCreation.name, playerCreation.mail, playerCreation.language))
+        val player = playerRepository.set(Player(playerCreation.name, playerCreation.mail, playerCreation.language))
 
-        stateRepository.save(InternalState(playerId = player.playerId))
+        stateRepository.set(InternalState(playerId = player.playerId))
 
         return player
     }
 
-    fun getPlayer(playerId: String) = playerRepository.findById(playerId)
-            .orElseThrow { NotFoundException("Unknown player $playerId") }
+    fun getPlayer(playerId: String) = playerRepository.get(playerId)
+    // .orElseThrow { NotFoundException("Unknown player $playerId") }
 
     fun getState(playerId: String) = withPlayerScenarioAndState(playerId, { _, scenario, state ->
         val step = scenario.steps[state.step]
@@ -107,7 +105,7 @@ class PlayerService {
             else -> step.results.failure
         }
 
-        val newState = stateRepository.save(InternalState(
+        val newState = stateRepository.set(InternalState(
                 playerId,
                 result.finish,
                 if (result.finish) state.step else result.step!!,
@@ -130,12 +128,12 @@ class PlayerService {
     })
 
     fun <R> withPlayerScenarioAndState(playerId: String, callback: (Player, Scenario, InternalState) -> R): R {
-        val player = playerRepository.findById(playerId)
-                .orElseThrow { NotFoundException("Unknown player $playerId") }
-        val scenario = scenarioRepository.findById(player.language)
-                .orElseThrow { InternalServerErrorException("Player $playerId has language ${player.language} with no scenario") }
-        val state = stateRepository.findById(playerId)
-                .orElseThrow { InternalServerErrorException("No state for player $playerId") }
+        val player = playerRepository.get(playerId)
+        //.orElseThrow { NotFoundException("Unknown player $playerId") }
+        val scenario = scenarioRepository.get(player.language)
+        //  .orElseThrow { InternalServerErrorException("Player $playerId has language ${player.language} with no scenario") }
+        val state = stateRepository.get(playerId)
+        // .orElseThrow { InternalServerErrorException("No state for player $playerId") }
 
         return callback(player, scenario, state)
     }
