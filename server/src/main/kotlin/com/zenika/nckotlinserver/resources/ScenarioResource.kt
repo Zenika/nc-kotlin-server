@@ -19,6 +19,6 @@ class ScenarioResource {
 
     @GET
     @Path("{language}")
-    fun get(@PathParam("language") language: String) = repository.get(language)
-    //.orElseThrow { NotFoundException("No scenario for language $language") }
+    fun get(@PathParam("language") language: String) = repository.get(language) ?:
+            throw NotFoundException("No scenario for language $language")
 }

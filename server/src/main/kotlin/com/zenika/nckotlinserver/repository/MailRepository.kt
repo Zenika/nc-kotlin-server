@@ -9,5 +9,5 @@ val key = "mail"
 @Repository
 class MailRepository(@Autowired val mailTemplate: RedisTemplate<String, String>) {
     fun add(mail: String) = mailTemplate.opsForSet().add(key, mail)
-    fun exists(mail: String) = mailTemplate.opsForSet().isMember(key, mail)
+    fun exists(mail: String) = mailTemplate.opsForSet().isMember(key, mail)!!
 }

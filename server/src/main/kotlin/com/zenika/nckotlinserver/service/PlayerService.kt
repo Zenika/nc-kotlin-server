@@ -10,6 +10,8 @@ import java.time.Duration
 import java.time.LocalDateTime.now
 import javax.ws.rs.BadRequestException
 import javax.ws.rs.ForbiddenException
+import javax.ws.rs.InternalServerErrorException
+import javax.ws.rs.NotFoundException
 
 @Service
 class PlayerService {
@@ -53,7 +55,7 @@ class PlayerService {
     }
 
     fun getPlayer(playerId: String) = playerRepository.get(playerId)
-    // .orElseThrow { NotFoundException("Unknown player $playerId") }
+            ?: throw NotFoundException("Unknown player $playerId")
 
     fun getState(playerId: String) = withPlayerScenarioAndState(playerId, { _, scenario, state ->
         val step = scenario.steps[state.step]
@@ -101,7 +103,7 @@ class PlayerService {
 
         val result = when {
             success -> step.results.success
-            step.results.partialSuccess?.threshold!!.let { successCount >= it } ?: false -> step.results.partialSuccess
+            step.results.partialSuccess?.threshold!!.let { successCount >= it } -> step.results.partialSuccess
             else -> step.results.failure
         }
 
@@ -129,11 +131,11 @@ class PlayerService {
 
     fun <R> withPlayerScenarioAndState(playerId: String, callback: (Player, Scenario, InternalState) -> R): R {
         val player = playerRepository.get(playerId)
-        //.orElseThrow { NotFoundException("Unknown player $playerId") }
+                ?: throw NotFoundException("Unknown player $playerId")
         val scenario = scenarioRepository.get(player.language)
-        //  .orElseThrow { InternalServerErrorException("Player $playerId has language ${player.language} with no scenario") }
+                ?: throw InternalServerErrorException("Player $playerId has language ${player.language} with no scenario")
         val state = stateRepository.get(playerId)
-        // .orElseThrow { InternalServerErrorException("No state for player $playerId") }
+                ?: throw InternalServerErrorException("No state for player $playerId")
 
         return callback(player, scenario, state)
     }
