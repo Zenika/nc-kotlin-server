@@ -7,6 +7,6 @@ import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.stereotype.Repository
 
 @Repository
-class PlayerRepository(@Autowired val playerTemplate: RedisTemplate<String, Player>)
-    : RedisValueRepository<Player>("player", playerTemplate)
+class PlayerRepository(@Autowired val template: RedisTemplate<String, Player>)
+    : RedisValueRepository<Player>("player", template)
 

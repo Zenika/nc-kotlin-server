@@ -7,5 +7,5 @@ import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.stereotype.Repository
 
 @Repository
-class InternalStateRepository(@Autowired val internalStateTemplate: RedisTemplate<String, InternalState>)
-    : RedisValueRepository<InternalState>({ "player:$it:state" }, internalStateTemplate)
+class InternalStateRepository(@Autowired val template: RedisTemplate<String, InternalState>)
+    : RedisValueRepository<InternalState>({ "player:$it:state" }, template)

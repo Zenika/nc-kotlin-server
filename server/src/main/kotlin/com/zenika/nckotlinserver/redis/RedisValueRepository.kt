@@ -8,7 +8,7 @@ import org.springframework.data.repository.Repository as DataRepository
 
 @Repository
 abstract class RedisValueRepository<E : Entity>(
-        val keyForId: (String?) -> String,
+        val keyForId: (String) -> String,
         template: RedisTemplate<String, E>
 ) : DataRepository<E, String> {
 
@@ -22,12 +22,12 @@ abstract class RedisValueRepository<E : Entity>(
 
     val opsForValue: ValueOperations<String, E> = template.opsForValue()
 
-    fun get(id: String): E = opsForValue.get(keyForId(id))
+    fun get(id: String): E? = opsForValue.get(keyForId(id))
 
-    fun exists(id: String?): Boolean = opsForValue.operations.hasKey(keyForId(id)) == true
+    fun exists(id: String): Boolean = opsForValue.operations.hasKey(keyForId(id))!!
 
-    fun <S : E?> set(entity: S): S {
-        opsForValue.set(keyForId(entity?.id()), entity)
+    fun set(entity: E): E {
+        opsForValue.set(keyForId(entity.id()), entity)
         return entity
     }
 }

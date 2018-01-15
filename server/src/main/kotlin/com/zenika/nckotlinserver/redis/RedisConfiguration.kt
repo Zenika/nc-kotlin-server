@@ -25,21 +25,24 @@ class RedisConfiguration {
     ) = JedisConnectionFactory(RedisStandaloneConfiguration(hostName, port))
 
     @Bean
-    fun scenarioRedisTemplate(@Autowired connectionFactory: JedisConnectionFactory)
+    fun scenarioTemplate(@Autowired connectionFactory: JedisConnectionFactory)
             : RedisTemplate<String, Scenario> = redisTemplate(connectionFactory)
 
     @Bean
-    fun playerRedisTemplate(@Autowired connectionFactory: JedisConnectionFactory)
+    fun playerTemplate(@Autowired connectionFactory: JedisConnectionFactory)
             : RedisTemplate<String, Player> = redisTemplate(connectionFactory)
 
     @Bean
-    fun playerResultRedisTemplate(@Autowired connectionFactory: JedisConnectionFactory)
+    fun playerResultTemplate(@Autowired connectionFactory: JedisConnectionFactory)
             : RedisTemplate<String, PlayerResult> = redisTemplate(connectionFactory)
 
     @Bean
-    fun internalStateRedisTemplate(@Autowired connectionFactory: JedisConnectionFactory)
+    fun internalStateTemplate(@Autowired connectionFactory: JedisConnectionFactory)
             : RedisTemplate<String, InternalState> = redisTemplate(connectionFactory)
 
+    @Bean
+    fun mailTemplate(@Autowired connectionFactory: JedisConnectionFactory)
+            : RedisTemplate<String, String> = redisTemplate(connectionFactory)
 }
 
 inline fun <reified E> redisTemplate(connectionFactory: JedisConnectionFactory): RedisTemplate<String, E> {

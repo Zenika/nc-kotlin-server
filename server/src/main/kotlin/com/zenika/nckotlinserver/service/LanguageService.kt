@@ -17,5 +17,8 @@ class LanguageService {
 
     fun list() = executor.getLanguages()
             .map { scenarioRepository.get(it) }
+            .filterNotNull()
             .map { Language(it.language, it.avatarImg) }
+
+    fun isAvailable(language: String) = executor.getLanguages().contains(language) && scenarioRepository.exists(language)
 }

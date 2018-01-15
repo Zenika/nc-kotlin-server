@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import javax.ws.rs.*
 import javax.ws.rs.core.MediaType.APPLICATION_JSON
 
-
 @Path("scenario")
 @Consumes(APPLICATION_JSON)
 @Produces(APPLICATION_JSON)
@@ -20,5 +19,6 @@ class ScenarioResource {
 
     @GET
     @Path("{language}")
-    fun get(@PathParam("language") language: String) = repository.get(language)
+    fun get(@PathParam("language") language: String) = repository.get(language) ?:
+            throw NotFoundException("No scenario for language $language")
 }
