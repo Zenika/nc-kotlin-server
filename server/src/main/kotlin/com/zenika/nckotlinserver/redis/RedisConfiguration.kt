@@ -2,12 +2,14 @@ package com.zenika.nckotlinserver.redis
 
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.zenika.nckotlinserver.model.*
+import com.zenika.nckotlinserver.model.InternalState
+import com.zenika.nckotlinserver.model.Player
+import com.zenika.nckotlinserver.model.PlayerResult
+import com.zenika.nckotlinserver.model.Scenario
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.context.annotation.PropertySource
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory
 import org.springframework.data.redis.core.RedisTemplate
@@ -15,7 +17,6 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer
 import org.springframework.data.redis.serializer.StringRedisSerializer
 
 @Configuration
-@PropertySource(value = "classpath:redis.properties", ignoreResourceNotFound = true)
 class RedisConfiguration {
 
     @Bean
