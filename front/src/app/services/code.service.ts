@@ -6,6 +6,7 @@ import { StateService } from './state.service'
 import 'rxjs/add/operator/do'
 import { StepModalComponent } from '../stepmodal/stepmodal.component'
 import { MatDialog } from '@angular/material'
+import { apiUrl } from './api.conf'
 
 interface ValidateResult {
   rate: number
@@ -40,7 +41,7 @@ export class CodeService {
 
     this.isLoading = true
     this.http
-      .post(`/api/player/${playerId}/test`, { code: code.replace(/\n/g, '\n') })
+      .post(`${apiUrl}/player/${playerId}/test`, { code: code.replace(/\n/g, '\n') })
       .map(res => res.json())
       .subscribe(tests => {
         this.isLoading = false
@@ -57,7 +58,7 @@ export class CodeService {
     this.isLoading = true
     document.getElementById('launchTest').focus()
     this.http
-      .post(`/api/player/${playerId}/validate`, { code: code.replace(/\n/g, '\n') })
+      .post(`${apiUrl}/player/${playerId}/validate`, { code: code.replace(/\n/g, '\n') })
       .map(res => res.json())
       .subscribe((result: ValidateResult) => {
         this.result.next(result)

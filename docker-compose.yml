@@ -5,34 +5,8 @@ services:
   front:
     build: ./front
     image: devfest-code-hero/front
-    depends_on:
-      - back
     ports:
       - "80:80"
 
-  back:
-    build: ./back
-    image: devfest-code-hero/back
-    depends_on:
-      - executor
-      - redis
-    command: ["-executor.URL", "http://executor:3000", "-redis.host", "redis"]
-    volumes:
-      - ./scenarios:/usr/src/scenarios:ro
-
-  executor:
-    build: ./executor
-    image: devfest-code-hero/executor
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - tmp:/tmp
-    privileged: true
-    stop_signal: SIGINT
-    environment:
-      TMPDIR: /tmp
-      TMPDIR_VOLUME: devfestcodehero_tmp
   redis:
     image: redis:4-alpine
-
-volumes:
-  tmp:

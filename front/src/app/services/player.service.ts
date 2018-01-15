@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core'
 import { Http } from '@angular/http'
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/toPromise'
+import { apiUrl } from './api.conf'
 
 export interface Player {
   playerId?: string
@@ -24,7 +25,7 @@ export class PlayerService {
     }
 
     this.player = await this.http
-      .post('/api/player', player)
+      .post(`${apiUrl}/player`, player)
       .map(res => res.json())
       .toPromise()
 

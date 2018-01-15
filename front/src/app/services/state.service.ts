@@ -3,6 +3,7 @@ import { Http } from '@angular/http'
 import { PlayerService } from './player.service'
 import { BehaviorSubject } from 'rxjs/BehaviorSubject'
 import { Router } from '@angular/router'
+import { apiUrl } from './api.conf'
 
 @Injectable()
 export class StateService {
@@ -24,7 +25,7 @@ export class StateService {
     }
     const { playerId } = this.playerService.player
     this.http
-      .get(`/api/player/${playerId}/state`)
+      .get(`${apiUrl}/player/${playerId}/state`)
       .map(res => res.json())
       .subscribe(state => {
         if (state.finished) {
