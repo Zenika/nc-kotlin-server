@@ -32,7 +32,7 @@ class Executor(@Value("\${executor.url:http://localhost:3000}") val url: String)
     }
 
     private fun getClient(): Client {
-        var client = ClientBuilder.newClient()
+        val client = ClientBuilder.newClient()
         val provider = JacksonJaxbJsonProvider()
         provider.setMapper(jacksonObjectMapper())
         return client.register(provider)
