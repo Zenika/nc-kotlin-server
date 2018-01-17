@@ -103,7 +103,7 @@ class PlayerService {
 
         val result = when {
             success -> step.results.success
-            step.results.partialSuccess?.threshold!!.let { successCount >= it } -> step.results.partialSuccess
+            step.results.partialSuccess?.threshold?.let { successCount >= it } ?: false -> step.results.partialSuccess!!
             else -> step.results.failure
         }
 
