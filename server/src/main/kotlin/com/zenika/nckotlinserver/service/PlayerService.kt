@@ -107,11 +107,10 @@ class PlayerService {
             else -> step.results.failure
         }
 
-        val newState = stateRepository.set(InternalState(
-                playerId,
-                result.finish,
-                if (result.finish) state.step else result.step!!,
-                state.score + result.score
+        val newState = stateRepository.set(state.copy(
+                finished = result.finish,
+                step = if (result.finish) state.step else result.step!!,
+                score = state.score + result.score
         ))
 
         if (newState.finished) {
