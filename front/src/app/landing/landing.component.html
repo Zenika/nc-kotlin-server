@@ -29,6 +29,9 @@
         />
       </div>
       <div class="langage-selector" style="display: flex; justify-content: center; margin-bottom: 20px;">
+        <div [ngClass]="{'selected': model.language === 'kt'}" class="logo-wrapper" style="margin-right: 50px;">
+          <img (click)="selectLanguage('kt')" style="width: 50px; height: 50px;" src="assets/kotlin.png" />
+        </div>
         <div [ngClass]="{'selected': model.language === 'js'}" class="logo-wrapper" style="margin-right: 50px;">
           <img (click)="selectLanguage('js')" style="width: 50px; height: 50px;" src="assets/js.png" />
         </div>

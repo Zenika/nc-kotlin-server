@@ -24,6 +24,7 @@
     ],
     "scripts": [
       "../node_modules/ace-builds/src-min/ace.js",
+      "../node_modules/ace-builds/src-min/mode-kotlin.js",
       "../node_modules/ace-builds/src-min/mode-python.js",
       "../node_modules/ace-builds/src-min/mode-php.js"
     ],
