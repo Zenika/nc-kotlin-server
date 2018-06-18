@@ -16,7 +16,7 @@ export class EditorComponent {
   ngOnInit() {
     const language = this.playerService.player ? this.playerService.player.language : 'js'
     this.mode = language === 'js' ? 'javascript' : this.playerService.player.language
-    console.log('this.mode', this.mode)
+    this.mode = language === 'kt' ? 'kotlin' : this.playerService.player.language
   }
 
   test() {
