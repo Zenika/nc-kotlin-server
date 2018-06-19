@@ -1,20 +1,18 @@
 buildscript {
 	ext {
-		kotlinVersion = '1.2.10'
-		springBootVersion = '2.0.0.BUILD-SNAPSHOT'
+		kotlinVersion = '1.2.41'
+		springBootVersion = '2.0.3.RELEASE'
 		jacksonVersion = '2.9.2'
 	}
 	repositories {
 		mavenCentral()
-		maven { url "https://repo.spring.io/snapshot" }
-		maven { url "https://repo.spring.io/milestone" }
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 		classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
 		classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
-		classpath("com.fasterxml.jackson.module:jackson-module-kotlin:${jacksonVersion}")
-	}
+        classpath("com.fasterxml.jackson.module:jackson-module-kotlin:${jacksonVersion}")
+    }
 }
 
 apply plugin: 'kotlin'
@@ -27,28 +25,34 @@ group = 'com.zenika'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 compileKotlin {
-	kotlinOptions.jvmTarget = "1.8"
+	kotlinOptions {
+		freeCompilerArgs = ["-Xjsr305=strict"]
+		jvmTarget = "1.8"
+	}
 }
 compileTestKotlin {
-	kotlinOptions.jvmTarget = "1.8"
-}
-
-bootRun {
-	systemProperties = System.properties
+	kotlinOptions {
+		freeCompilerArgs = ["-Xjsr305=strict"]
+		jvmTarget = "1.8"
+	}
 }
 
 repositories {
 	mavenCentral()
-	maven { url "https://repo.spring.io/snapshot" }
-	maven { url "https://repo.spring.io/milestone" }
 }
+
+bootRun {
+	systemProperties System.properties
+}
+
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-redis')
 	compile('org.springframework.boot:spring-boot-starter-jersey')
-	compile("org.jetbrains.kotlin:kotlin-stdlib-jre8")
+	compile('com.fasterxml.jackson.module:jackson-module-kotlin')
+	compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	compile("org.jetbrains.kotlin:kotlin-reflect")
-	compile("com.fasterxml.jackson.module:jackson-module-kotlin")
-	compile('redis.clients:jedis')
-	testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile("com.fasterxml.jackson.module:jackson-module-kotlin")
+    compile('redis.clients:jedis')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
 }

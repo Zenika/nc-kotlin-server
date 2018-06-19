@@ -10,6 +10,6 @@ class ResultService {
     lateinit var repository: PlayerResultRepository
 
     fun list() = repository.getAll()
-            .sortedBy { it.time }
-            .sortedByDescending { it.score }
+            ?.sortedBy { it.time }
+            ?.sortedByDescending { it.score }
 }

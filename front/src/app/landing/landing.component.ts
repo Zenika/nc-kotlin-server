@@ -14,7 +14,7 @@ export class LandingComponent {
   model = {
     name: '',
     mail: '',
-    language: 'js'
+    language: 'kt'
   }
 
   constructor(private playerService: PlayerService, private router: Router, private modal: MatDialog) {}

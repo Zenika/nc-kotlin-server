@@ -8,6 +8,8 @@ services:
       - codehero-temp:/tmp
     privileged: true
     stop_signal: SIGINT
+    ports:
+      - "3000:3000"
     environment:
       TMPDIR: /tmp
       TMPDIR_VOLUME: executor_codehero-temp

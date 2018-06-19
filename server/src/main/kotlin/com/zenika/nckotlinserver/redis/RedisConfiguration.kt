@@ -48,7 +48,7 @@ class RedisConfiguration {
 
 inline fun <reified E> redisTemplate(connectionFactory: JedisConnectionFactory): RedisTemplate<String, E> {
     val template = RedisTemplate<String, E>()
-    template.connectionFactory = connectionFactory
+    template.setConnectionFactory(connectionFactory)
     template.keySerializer = StringRedisSerializer()
     val valueSerializer = Jackson2JsonRedisSerializer(E::class.java)
     valueSerializer.setObjectMapper(jacksonObjectMapper().registerModule(JavaTimeModule()))
